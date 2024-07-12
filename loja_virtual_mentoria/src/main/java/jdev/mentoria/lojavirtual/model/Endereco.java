@@ -1,6 +1,8 @@
 package jdev.mentoria.lojavirtual.model;
 
 
+import jdev.mentoria.lojavirtual.enums.TipoEndereco;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -29,10 +31,20 @@ public class Endereco implements Serializable {
 
     private String cidade;
 
-
     @ManyToOne(targetEntity = Pessoa.class)
     @JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
     private Pessoa pessoa;
+
+    @Enumerated(EnumType.STRING)
+    private TipoEndereco tipoEndereco;
+
+    public TipoEndereco getTipoEndereco() {
+        return tipoEndereco;
+    }
+
+    public void setTipoEndereco(TipoEndereco tipoEndereco) {
+        this.tipoEndereco = tipoEndereco;
+    }
 
     public Long getId() {
         return id;
